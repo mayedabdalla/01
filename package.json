@@ -1,0 +1,17 @@
+{
+  "name": "smow",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "ngrok": "ngrok http 8080"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "ngrok": "^3.2.7"
+  }
+}

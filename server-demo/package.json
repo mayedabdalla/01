@@ -1,0 +1,30 @@
+{
+  "name": "server-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node-dev --respawn src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@prisma/cli": "^2.2.2",
+    "@types/express": "github:types/npm-express",
+    "@types/node": "^14.0.14",
+    "ts-node-dev": "^1.0.0-pre.50",
+    "typescript": "^3.9.6"
+  },
+  "dependencies": {
+    "@prisma/client": "^2.1.3",
+    "apollo-server": "^2.15.1",
+    "graphql": "^15.3.0",
+    "image-size": "^0.8.3",
+    "sharp": "^0.25.4",
+    "shortid": "^2.2.15",
+    "unique-filename": "^1.1.1",
+    "yup": "^0.29.1"
+  }
+}

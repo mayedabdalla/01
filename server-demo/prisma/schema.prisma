@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_URL")
+}
+
+model Comic {
+  coverId Int?
+  id      Int    @default(autoincrement()) @id
+  name    String @unique
+  slug    String @unique
+  text    String
+  type    Type
+  cover    File?  @relation(fields: [coverId], references: [id])
+  chapters   Chapter[]
+}
+
+model File {
+  filename String
+  id       Int     @default(autoincrement()) @id
+  mimetype String
+  path     String  @unique
+}
+
+model Chapter {
+    id      Int     @default(autoincrement()) @id
+    name    String
+    comicId Int
+    comic   Comic   @relation(fields: [comicId], references: [id])
+    pages   Page[]
+    @@unique([comicId, name])
+}
+
+model Page {
+    id      Int     @default(autoincrement()) @id
+    number  Int
+    image       File    @relation(fields: [imageId], references: [id])
+    imageId     Int
+    width   Int
+    height  Int
+}
+
+enum Type {
+  MANGA
+  MANHWA
+}
