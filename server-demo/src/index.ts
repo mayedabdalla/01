@@ -5,10 +5,10 @@ import * as sharp from 'sharp';
 import {createWriteStream, unlink} from "fs";
 import * as express from 'express';
 import {ApolloServer} from 'apollo-server-express';
-// import * as sizeOf from 'image-size';
-import * as path from "path";
 import * as fs from "fs";
+import * as mkdirp from 'mkdirp'
 
+mkdirp('./uploads')
 
 const Sharp = require('sharp');
 

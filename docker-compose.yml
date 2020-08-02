@@ -1,5 +1,13 @@
 version: '3.7'
 services:
+  postgres:
+    build:
+      context: db
+      dockerfile: Dockerfile
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
   backend:
     links:
       - postgres
@@ -20,16 +28,6 @@ services:
       - ./server-demo:/app
       - /app/node_modules
       - /app/prisma
-  postgres:
-    image: postgres
-    restart: always
-    environment:
-      POSTGRES_USER: prisma
-      POSTGRES_PASSWORD: prisma
-    volumes:
-      - postgres:/var/lib/postgresql/data
-    ports:
-      - 5432:5432
   frontend:
     container_name: frontend
     ports:
