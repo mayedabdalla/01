@@ -54,12 +54,15 @@ const Create = () => {
                 onSubmit={async (values, {setStatus, setFieldError, setSubmitting, resetForm, setFieldTouched, setErrors}) => {
                     await new Promise(resolve => setTimeout(resolve, 3000));
                     try {
+                        console.log(values)
                         const {data} = await createComic({variables: values});
+                        console.log(data)
                         resetForm()
                         setSubmitting(false);
                         await Router.push('/[comic]', `/${encodeURIComponent(data.createComic.name)}`);
 
                     } catch (e) {
+                        console.log(e)
                         e.graphQLErrors.map(_ => {
                             switch (_.extensions.code) {
                                 case "BAD_USER_INPUT":

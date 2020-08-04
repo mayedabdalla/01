@@ -1,0 +1,21 @@
+overwrite: true
+schema: "src/schema.graphql"
+documents: null
+generates:
+  src/generated/graphql.ts:
+    plugins:
+      - "typescript"
+      - "typescript-resolvers"
+  ./graphql.schema.json:
+    plugins:
+      - "introspection"
+# add these below
+config:
+  skipTypename: true
+  # This path is RELATIVE to where you will generate your output!!
+  # In this case, it looks for the context.ts in src/resolvers
+  # './context#Context' means it will look for a Type/Interface with the name 'Context' in context.s
+  contextType: '../context#Context'
+hooks:
+  afterAllFileWrite:
+    - prettier --write # optional

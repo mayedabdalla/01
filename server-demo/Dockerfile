@@ -6,9 +6,15 @@ WORKDIR /app
 
 COPY package.json ./
 COPY prisma ./prisma/
-
+COPY tsconfig.json ./
+COPY src ./src/
+COPY codegen.yml ./
 RUN npm install
+
+RUN npm run build
 
 RUN npx prisma generate
 
-CMD ["npm", "start"]
+RUN npm run generate
+
+CMD ["npm", "run", "deploy"]

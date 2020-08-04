@@ -93,7 +93,7 @@ const List = () => {
             `}</style>
             <h2>كافة المانهوا</h2>
             <ul>
-                {data.comics.map(comic => (
+                {data.comics?.map(comic => (
                     <li key={comic.id}>
                         <Link href="/[comic]" as={`/${encodeURIComponent(comic.name)}`}>
                             <a className='comic'>
