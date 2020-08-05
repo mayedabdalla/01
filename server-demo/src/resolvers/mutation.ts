@@ -9,7 +9,6 @@ const validator = Yup.object({
     type: Yup.string().oneOf(['MANHWA', 'MANGA']).required(),
     name: Yup.string()
         .trim()
-        .max(15, 'Must be 15 characters or less')
         .required('Required'),
 })
 const isValidImage = async (file) => {
