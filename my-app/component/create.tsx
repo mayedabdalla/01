@@ -75,7 +75,6 @@ const Create = () => {
                 validationSchema={Yup.object({
                     name: Yup.string()
                         .trim()
-                        .max(15, 'Must be 15 characters or less')
                         .required('Required'),
                     type: Yup.string().oneOf(['MANHWA', 'MANGA']).required(),
                     text: Yup.string()
