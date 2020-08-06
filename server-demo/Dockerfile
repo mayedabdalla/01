@@ -12,7 +12,8 @@ COPY codegen.yml ./
 RUN npm install
 
 RUN npm run build
-
+COPY dis ./dis/
+COPY src/schema.graphql ./dis
 RUN npx prisma generate
 
 RUN npm run generate
