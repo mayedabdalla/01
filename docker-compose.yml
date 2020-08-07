@@ -24,6 +24,7 @@ services:
     environment:
       POSTGRES_URL: ${POSTGRES_URL}
       FRONTEND_URL: ${FRONTEND_URL}
+      NODE_ENV: production
     volumes:
       - ./backend:/app
       - /app/node_modules
