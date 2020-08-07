@@ -13,4 +13,4 @@ visit localhost:3000
 ```bash
 docker-compsoe up --build
 ```
-visit localhost
+visit localhost/
