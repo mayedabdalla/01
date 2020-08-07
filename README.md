@@ -1,15 +1,16 @@
 ## for devlopment
 run this command in backend dir
 ```bash
-npm run start
+cd backend && npm run start
 ```
-run this command in frontend dir
+then run this command
 ```bash
-npm run dev
+cd frontend npm run dev
 ```
 then run postgress container in docker-compose
-
+visit localhost:3000
 ## for production 
 ```bash
 docker-compsoe up --build
 ```
+visit localhost
