@@ -5,7 +5,7 @@ cd backend && npm run start
 ```
 then run this command
 ```bash
-cd frontend npm run dev
+cd frontend && npm run dev
 ```
 then run postgress container in docker-compose
 visit localhost:3000
