@@ -17,7 +17,7 @@ services:
     ports:
       - '4000:4000'
     build:
-      context: server-demo
+      context: backend
       dockerfile: Dockerfile
       args:
         - POSTGRES_URL=${POSTGRES_URL}
@@ -25,20 +25,21 @@ services:
       POSTGRES_URL: ${POSTGRES_URL}
       FRONTEND_URL: ${FRONTEND_URL}
     volumes:
-      - ./server-demo:/app
+      - ./backend:/app
       - /app/node_modules
+      - /app/dis
       - /app/prisma
   frontend:
     container_name: frontend
     ports:
       - '3000:3000'
     build:
-      context: my-app
+      context: frontend
       dockerfile: Dockerfile
     environment:
       BACKEND_URL: ${BACKEND_URL}
     volumes:
-      - ./my-app:/app
+      - ./frontend:/app
       - /app/node_modules
       - /app/.next
   web:
