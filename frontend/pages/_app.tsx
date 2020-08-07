@@ -14,7 +14,13 @@ const App = ({Component, pageProps, apollo}) => (
         <Component {...pageProps} />
     </ApolloProvider>
 );
-
+let link;
+const isBrowser = typeof window !== 'undefined';
+if (process.env.NODE_ENV === "development") {
+    link = "http://localhost:4000/graphql"
+} else {
+ link = isBrowser ? '/graphql' : process.env.BACKEND_URL
+}
 export default withApollo(({initialState, ctx}) => {
     const isBrowser = typeof window !== 'undefined';
     return new ApolloClient({
@@ -29,7 +35,7 @@ export default withApollo(({initialState, ctx}) => {
                     );
                 if (networkError) console.log(`[Network error]: ${networkError}`);
             }),
-            createUploadLink({uri: isBrowser ? '/graphql' : process.env.BACKEND_URL}),
+            createUploadLink({uri: link }),
         ]),
         cache: new InMemoryCache().restore(initialState || {}),
     });

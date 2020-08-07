@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node-dev --respawn src/index.ts",
+    "start": "POSTGRES_URL='postgresql://prisma:prisma@localhost:5432/prisma' ts-node-dev --respawn src/index.ts",
     "generate": "graphql-codegen --config codegen.yml",
     "build": "tsc -p .",
     "deploy": "pm2-runtime dis/index.js"
