@@ -39,7 +39,7 @@ const Header = () => {
             </style>
 
             <header className={`header`}>
-                <h1 className="logo"><Link href="/"><a>untitled</a></Link></h1>
+                <h1 className="logo"><Link href="/"><a>{process.env.NEXT_PUBLIC_WEBSITE_TITLE}</a></Link></h1>
                 <nav>
                     <Link href="/new">
                         <a>إضافة</a>
@@ -54,7 +54,7 @@ const Header = () => {
 const Footer = () => {
     return (
         <footer>
-            <p dir={"ltr"}>&copy; {new Date().getFullYear()} untitled.</p>
+            <p dir={"ltr"}>&copy; {new Date().getFullYear()} {process.env.NEXT_PUBLIC_WEBSITE_TITLE}.</p>
         </footer>
     )
 }
@@ -145,7 +145,7 @@ label, textarea {
                 .map((item) => (<meta name={`twitter:${item}`} content={twitterCard[item]}/>))
             }
 
-            <title>{title ? `${title} - untitled` : 'untitled'}</title>
+            <title>{title ? `${title} - ${process.env.NEXT_PUBLIC_WEBSITE_TITLE}` : process.env.NEXT_PUBLIC_WEBSITE_TITLE}</title>
         </Head>
         <Header/>
         <main>{children}</main>
