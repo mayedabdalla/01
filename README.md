@@ -1,6 +1,6 @@
 ## for devlopment
 ```bash
-docker-compose up -d client
+docker-compose up -d postgres
 ```
 run this command in backend dir
 ```bash
