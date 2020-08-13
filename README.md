@@ -1,4 +1,7 @@
 ## for devlopment
+```bash
+docker-compose up -d client
+```
 run this command in backend dir
 ```bash
 cd backend && npm install && npm run start
