@@ -1,5 +1,5 @@
 import withApollo from 'next-with-apollo';
-import {ApolloProvider} from '@apollo/react-hooks';
+import {ApolloProvider} from '@apollo/client';
 import {ApolloClient} from "apollo-client";
 import {ApolloLink, concat, from} from "apollo-link";
 import {onError} from "apollo-link-error";

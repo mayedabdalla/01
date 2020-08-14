@@ -7,6 +7,7 @@ import Error from "../_error";
 import {useEffect, useState} from "react";
 import Cover from "../../component/cover";
 import { GetServerSideProps } from 'next'
+import {useComicQuery} from "../../generated/graphql";
 
 const QUERY = gql`
     query($name: String) {
@@ -31,7 +32,7 @@ const QUERY = gql`
 
 
 const Comic = ({router, url}) => {
-    const {loading, data} = useQuery(QUERY, {variables: {name: decodeURIComponent(router.query.comic)}});
+    const {loading, data} = useComicQuery({variables: {name: decodeURIComponent(router.query.comic)}});
     if (loading || !data) {
         return <h1>loading...</h1>;
     }

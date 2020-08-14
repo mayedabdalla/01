@@ -2,6 +2,7 @@ import gql from "graphql-tag";
 import {useQuery} from "@apollo/react-hooks";
 import Link from "next/link";
 import Cover from "./cover";
+import {useComicsQuery} from "../generated/graphql";
 
 const QUERY = gql`
     {
@@ -17,7 +18,7 @@ const QUERY = gql`
     }
 `;
 const List = () => {
-    const {loading, data} = useQuery(QUERY);
+    const {loading, data} = useComicsQuery();
     if (loading || !data) {
         return <h1>loading...</h1>;
     }

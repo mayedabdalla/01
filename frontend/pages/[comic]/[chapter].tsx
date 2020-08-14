@@ -3,34 +3,13 @@ import {useQuery} from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import {LazyImage} from "../../component/lazy-image";
 import Head from "next/head";
+import {useChapterQuery} from "../../generated/graphql";
 
-const QUERY = gql`
-
-    query($id: Int){
-        chapter(id: $id){
-            name
-            comic {
-                name
-            },
-            pages {
-                id
-                height
-                width
-                image {
-                    id
-                    link
-                    filename
-                }
-            }
-        }
-    }
-
-`;
 
 export default () => {
     const router = useRouter();
     const {comic, chapter} = router.query;
-    const {loading, data} = useQuery(QUERY, {
+    const {loading, data} = useChapterQuery({
         variables: {
             id: parseInt(chapter as string)
         }

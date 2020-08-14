@@ -1,0 +1,64 @@
+query comics {
+    comics {
+        id
+        name
+        slug
+        type
+        cover {
+            filename
+        }
+    }
+}
+
+query comic($name: String) {
+    comic(name: $name) {
+        id
+        name
+        text
+        type
+        slug
+        chapters {
+            id
+            name
+        }
+        cover {
+            filename
+            path
+            link
+        }
+    }
+}
+
+query chapter($id: Int){
+    chapter(id: $id){
+        name
+        comic {
+            name
+        },
+        pages {
+            id
+            height
+            width
+            image {
+                id
+                link
+                filename
+            }
+        }
+    }
+}
+
+mutation CreateComic($name: String!, $text: String!, $type: Type!, $cover: Upload) {
+    createComic(name: $name, text: $text, type:$type, cover: $cover ) {
+        id
+        name
+        slug
+        type
+    }
+}
+
+mutation addChapter($name: String, $pages: Upload, $comicName: String) {
+    addChapter(name: $name, pages: $pages, comicName: $comicName ) {
+        id
+    }
+}

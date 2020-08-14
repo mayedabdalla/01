@@ -7,6 +7,7 @@ import TextField from "./text-field";
 import TextArea from "./TextArea";
 import CoverField from "./CoverField";
 import RadioField from "./RadioField";
+import {useCreateComicMutation} from "../generated/graphql";
 
 const CREATE_COMIC = gql`
     mutation CreateComic($name: String!, $text: String!, $type: Type!, $cover: Upload) {
@@ -21,7 +22,7 @@ const CREATE_COMIC = gql`
 
 
 const Create = () => {
-    const [createComic, {data}] = useMutation(CREATE_COMIC);
+    const [createComic, {data}] = useCreateComicMutation();
     return (
         <>
             <style jsx>
@@ -54,9 +55,8 @@ const Create = () => {
                 onSubmit={async (values, {setStatus, setFieldError, setSubmitting, resetForm, setFieldTouched, setErrors}) => {
                     await new Promise(resolve => setTimeout(resolve, 3000));
                     try {
-                        console.log(values)
+                        // @ts-ignore
                         const {data} = await createComic({variables: values});
-                        console.log(data)
                         resetForm()
                         setSubmitting(false);
                         await Router.push('/[comic]', `/${encodeURIComponent(data.createComic.name)}`);

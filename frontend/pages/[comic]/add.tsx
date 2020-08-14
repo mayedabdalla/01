@@ -9,7 +9,7 @@ import gql from "graphql-tag";
 import Router, {useRouter} from "next/router";
 import TextField from "../../component/text-field";
 import PagesInput from "../../component/PagesInput";
-
+import {useAddChapterMutation} from "../../generated/graphql";
 
 
 const ADD_CHAPTER = gql`
@@ -23,7 +23,7 @@ const ADD_CHAPTER = gql`
 export default () => {
     const router = useRouter()
     const {comic} = router.query
-    const [addChapter, {data}] = useMutation(ADD_CHAPTER);
+    const [addChapter, {data}] = useAddChapterMutation();
     return (
         <Layout>
             <Formik
