@@ -1,35 +1,10 @@
 import {withRouter} from 'next/router'
-import gql from "graphql-tag";
-import {useQuery} from "@apollo/react-hooks";
 import Link from "next/link";
 import Layout from "../../component/layout";
 import Error from "../_error";
-import {useEffect, useState} from "react";
 import Cover from "../../component/cover";
-import { GetServerSideProps } from 'next'
+import {GetServerSideProps} from 'next'
 import {useComicQuery} from "../../generated/graphql";
-
-const QUERY = gql`
-    query($name: String) {
-        comic(name: $name) {
-            id
-            name
-            text
-            type
-            slug
-            chapters {
-                id
-                name
-            }
-            cover {
-                filename
-                path
-                link
-            }
-        }
-    }
-`;
-
 
 const Comic = ({router, url}) => {
     const {loading, data} = useComicQuery({variables: {name: decodeURIComponent(router.query.comic)}});
@@ -86,14 +61,17 @@ const Comic = ({router, url}) => {
                     }
                 `}
             </style>
-            <Layout twitterCard={{
-                card: 'summary',
-                image: data.comic.cover ? `${url}/uploads/${data.comic.cover.filename}?format=webp&width=${384 * 2}&height=${412.8 * 2}` : null,
-                title: `${data.comic.type === 'MANHWA' ? "مانهوا" : "مانجا"} ${data.comic.name}`,
-                site: '@mydlala',
-                description: `جميع فصول  ${data.comic.name} مترجمة بالعربية. اقرا فصول ${data.comic.name} الآن.`
-            }} title={`${data.comic.type === 'MANHWA' ? "مانهوا" : "مانجا"} ${data.comic.name}`}
-                    description={`جميع فصول  ${data.comic.name} مترجمة بالعربية. اقرا فصول ${data.comic.name} الآن.`}>
+            <Layout
+                twitterCard={{
+                    card: 'summary',
+                    image: data.comic.cover ? `${url}/uploads/${data.comic.cover.filename}?format=webp&width=${384 * 2}&height=${412.8 * 2}` : null,
+                    title: `${data.comic.type === 'MANHWA' ? "مانهوا" : "مانجا"} ${data.comic.name}`,
+                    site: '@mydlala',
+                    description: `جميع فصول  ${data.comic.name} مترجمة بالعربية. اقرا فصول ${data.comic.name} الآن.`
+                }}
+                title={`${data.comic.type === 'MANHWA' ? "مانهوا" : "مانجا"} ${data.comic.name}`}
+                description={`جميع فصول  ${data.comic.name} مترجمة بالعربية. اقرا فصول ${data.comic.name} الآن.`}
+            >
                 <article className="comic">
                     <div className="info">
                         <div className='cover'>

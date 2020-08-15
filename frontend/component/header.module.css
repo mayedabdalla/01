@@ -1,0 +1,11 @@
+.header {
+    background: yellow;
+}
+.header div {
+    display: flex;
+    align-items: center;
+}
+
+.header nav {
+    margin-right: auto;
+}
