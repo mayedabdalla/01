@@ -1,0 +1,35 @@
+.info {
+    display: flex;
+    flex-direction: row;
+}
+.desc {
+    overflow: hidden;
+    flex-basis: 100%;
+}
+.desc p {
+    word-wrap: break-word;
+}
+
+.cover {
+    flex-basis: 100%;
+    flex-shrink: 0;
+}
+
+@media (min-width: 768px) {
+    .info {
+        flex-direction: row;
+
+    }
+    .desc {
+        margin-right: 10px;
+    }
+    .cover {
+        flex-basis: 40%;
+        background: yellow;
+    }
+}
+@media (min-width: 992px) {
+    .cover {
+        flex-basis: 27%;
+    }
+}
