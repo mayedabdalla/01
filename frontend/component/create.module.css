@@ -1,0 +1,21 @@
+.comic {
+    display: flex;
+    flex-direction: row;
+    background: aqua;
+}
+.desc fieldset {
+    border: none;
+    padding: 0
+}
+
+.desc {
+    flex-grow: 1;
+}
+@media (min-width: 768px) {
+    .comic {
+        flex-direction: row;
+    }
+    .desc {
+        margin-right: 10px;
+    }
+}

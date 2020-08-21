@@ -1,13 +1,12 @@
 import withApollo from 'next-with-apollo';
 import {ApolloProvider} from '@apollo/client';
 import {ApolloClient} from "apollo-client";
-import {ApolloLink, concat, from} from "apollo-link";
+import {from} from "apollo-link";
 import {onError} from "apollo-link-error";
-import {HttpLink} from "apollo-link-http";
 import {InMemoryCache} from "apollo-cache-inmemory";
 import {getDataFromTree} from '@apollo/react-ssr';
-
 const {createUploadLink} = require('apollo-upload-client');
+import '../styles.css'
 
 const App = ({Component, pageProps, apollo}) => (
     <ApolloProvider client={apollo}>

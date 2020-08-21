@@ -3,20 +3,7 @@ import {useQuery} from "@apollo/react-hooks";
 import Link from "next/link";
 import Cover from "./cover";
 import {useComicsQuery} from "../generated/graphql";
-
-const QUERY = gql`
-    {
-        comics {
-            id
-            name
-            slug
-            type
-            cover {
-                filename
-            }
-        }
-    }
-`;
+import { container } from "./container.module.css";
 const List = () => {
     const {loading, data} = useComicsQuery();
     if (loading || !data) {
@@ -32,13 +19,7 @@ const List = () => {
                     margin-top: 0;
                     margin-bottom: 0;
                 }
-                // li {
-                //     height: 100%;
-                // }
-                // li:nth-child(odd) {
-                //     background: grey;
-                // }
-                
+               
                 .comic {
                     color: black;
                     display: flex;
@@ -92,24 +73,26 @@ const List = () => {
 
                 }
             `}</style>
-            <h2>كافة المانهوا</h2>
-            <ul>
-                {data.comics?.map(comic => (
-                    <li key={comic.id}>
-                        <Link href="/[comic]" as={`/${encodeURIComponent(comic.name)}`}>
-                            <a className='comic'>
-                                <div className='cover'>
-                                    <Cover cover={comic.cover}/>
-                                </div>
-                                <div className='info'>
-                                    <div className='type'>{comic.type == 'MANHWA'?"مانهوا": "مانجا" }</div>
-                                    <h3 className='title'>{comic.name}</h3>
-                                </div>
-                            </a>
-                        </Link>
-                    </li>
-                ))}
-            </ul>
+            <div className={container}>
+                <h2>كافة المانهوا</h2>
+                <ul>
+                    {data.comics?.map(comic => (
+                        <li key={comic.id}>
+                            <Link href="/[comic]" as={`/${encodeURIComponent(comic.name)}`}>
+                                <a className='comic'>
+                                    <div className='cover'>
+                                        <Cover cover={comic.cover}/>
+                                    </div>
+                                    <div className='info'>
+                                        <div className='type'>{comic.type == 'MANHWA'?"مانهوا": "مانجا" }</div>
+                                        <h3 className='title'>{comic.name}</h3>
+                                    </div>
+                                </a>
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </>
     )
 };

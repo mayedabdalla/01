@@ -1,37 +1,13 @@
 import {withRouter} from 'next/router'
-import gql from "graphql-tag";
-import {useQuery} from "@apollo/react-hooks";
 import Link from "next/link";
 import Layout from "../../component/layout";
 import Error from "../_error";
-import {useEffect, useState} from "react";
 import Cover from "../../component/cover";
-import { GetServerSideProps } from 'next'
+import Comisc from "../../component/comic";
+import {GetServerSideProps} from 'next'
 import {useComicQuery} from "../../generated/graphql";
 
-const QUERY = gql`
-    query($name: String) {
-        comic(name: $name) {
-            id
-            name
-            text
-            type
-            slug
-            chapters {
-                id
-                name
-            }
-            cover {
-                filename
-                path
-                link
-            }
-        }
-    }
-`;
-
-
-const Comic = ({router, url}) => {
+const Comic1 = ({router, url}) => {
     const {loading, data} = useComicQuery({variables: {name: decodeURIComponent(router.query.comic)}});
     if (loading || !data) {
         return <h1>loading...</h1>;
@@ -86,44 +62,18 @@ const Comic = ({router, url}) => {
                     }
                 `}
             </style>
-            <Layout twitterCard={{
-                card: 'summary',
-                image: data.comic.cover ? `${url}/uploads/${data.comic.cover.filename}?format=webp&width=${384 * 2}&height=${412.8 * 2}` : null,
-                title: `${data.comic.type === 'MANHWA' ? "مانهوا" : "مانجا"} ${data.comic.name}`,
-                site: '@mydlala',
-                description: `جميع فصول  ${data.comic.name} مترجمة بالعربية. اقرا فصول ${data.comic.name} الآن.`
-            }} title={`${data.comic.type === 'MANHWA' ? "مانهوا" : "مانجا"} ${data.comic.name}`}
-                    description={`جميع فصول  ${data.comic.name} مترجمة بالعربية. اقرا فصول ${data.comic.name} الآن.`}>
-                <article className="comic">
-                    <div className="info">
-                        <div className='cover'>
-                            <Cover cover={data.comic.cover}/>
-                        </div>
-                        <div className="desc">
-                            <h2>{data.comic.name}</h2>
-                            <p>النوع: {data.comic.type === "MANHWA" ? "مانهوا" : "مانجا"}</p>
-                            <h3>الوصف</h3>
-                            <p>{data.comic.text ? data.comic.text : "لم يضاف إليها وصف"}</p>
-                        </div>
-                    </div>
-                    <div>
-                        <h3>الفصول</h3>
-                        <Link href='/[comic]/add' as={`${router.asPath}/add`}>
-                            <a>إضافة فصل</a>
-                        </Link>
-                        {
-                            data.comic.chapters ? (
-                                <ul>
-                                    {data.comic.chapters?.map(chapter => {
-                                        return (<li key={chapter.id}><Link href='/[comic]/[chapter]'
-                                                                           as={`${router.asPath}/${chapter.id}`}><a>{chapter.name}</a></Link>
-                                        </li>)
-                                    })}
-                                </ul>
-                            ) : (<p>ليس هناك فصل</p>)
-                        }
-                    </div>
-                </article>
+            <Layout
+                twitterCard={{
+                    card: 'summary',
+                    image: data.comic.cover ? `${url}/uploads/${data.comic.cover.filename}?format=webp&width=${384 * 2}&height=${412.8 * 2}` : null,
+                    title: `${data.comic.type === 'MANHWA' ? "مانهوا" : "مانجا"} ${data.comic.name}`,
+                    site: '@mydlala',
+                    description: `جميع فصول  ${data.comic.name} مترجمة بالعربية. اقرا فصول ${data.comic.name} الآن.`
+                }}
+                title={`${data.comic.type === 'MANHWA' ? "مانهوا" : "مانجا"} ${data.comic.name}`}
+                description={`جميع فصول  ${data.comic.name} مترجمة بالعربية. اقرا فصول ${data.comic.name} الآن.`}
+            >
+                <Comisc comic={data.comic}/>
             </Layout>
         </>
     )
@@ -139,4 +89,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 }
 
 
-export default withRouter(Comic)
+export default withRouter(Comic1)
