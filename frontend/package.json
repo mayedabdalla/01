@@ -22,7 +22,7 @@
     "formik": "^2.1.4",
     "graphql": "^14.7.0",
     "graphql-tag": "^2.10.3",
-    "next": "9.4.4",
+    "next": "13.0.4",
     "next-with-apollo": "^5.1.0",
     "react": "16.13.1",
     "react-content-loader": "^5.1.0",
